@@ -1,4 +1,7 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `spUserMentions`(userid int)
+delimiter //
+
+CREATE PROCEDURE spUserMentions
+(usermentioned int)
 BEGIN
 	select
 			m.chirpid as 'Chirp Id',
@@ -6,5 +9,7 @@ BEGIN
 			c._created as 'Chirp Date'
 	from mentions m 
 	join chirps c on c.id = m.chirpid
-	where m.userid = userid;
-END
+	where m.userid = usermentioned;
+END//
+
+delimiter ;
